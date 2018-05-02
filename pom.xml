@@ -7,6 +7,8 @@
     <description>Apache Shiro Demo</description>
     <modules>
         <module>hello-world</module>
+        <module>realm-config</module>
+        <module>core-config</module>
     </modules>
 
     <groupId>me.feathers.demo</groupId>
