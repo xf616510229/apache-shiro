@@ -56,7 +56,7 @@ public class HelloShiro {
         //5.获取认证结果
         logger.info("usAuthenticated: {}", subject.isAuthenticated());
 
-        //6.认证成功后进行权限验证
+        //6.权限验证
         if (subject.isAuthenticated()) {
             if (subject.hasRole("admin")) {
                 logger.info("用户{}拥有admin角色！", subject.getPrincipal());
