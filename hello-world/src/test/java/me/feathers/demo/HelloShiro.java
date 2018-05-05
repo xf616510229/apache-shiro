@@ -60,7 +60,7 @@ public class HelloShiro {
 
         //6.权限验证
         try {
-            subject.checkPermission("admin");
+            subject.checkRoles("admin");
         } catch (UnauthenticatedException e) {
             logger.error("对不起，请您先登陆", e);
         } catch (UnauthorizedException e) {
