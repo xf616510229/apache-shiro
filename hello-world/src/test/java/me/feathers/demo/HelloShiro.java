@@ -5,6 +5,8 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.UnauthenticatedException;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.config.IniSecurityManagerFactory;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
@@ -54,15 +56,15 @@ public class HelloShiro {
         }
 
         //5.获取认证结果
-        logger.info("usAuthenticated: {}", subject.isAuthenticated());
+        logger.info("isAuthenticated: {}", subject.isAuthenticated());
 
         //6.权限验证
-        if (subject.isAuthenticated()) {
-            if (subject.hasRole("admin")) {
-                logger.info("用户{}拥有admin角色！", subject.getPrincipal());
-            } else {
-                logger.error("用户{}没有admin角色！", subject.getPrincipal());
-            }
+        try {
+            subject.checkPermission("admin");
+        } catch (UnauthenticatedException e) {
+            logger.error("对不起，请您先登陆", e);
+        } catch (UnauthorizedException e) {
+            logger.error("对不起，您没有该权限");
         }
     }
 
