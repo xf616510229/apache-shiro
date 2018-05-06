@@ -6,22 +6,26 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.text.IniRealm;
 import org.apache.shiro.subject.Subject;
+import org.junit.Test;
 
 /**
- * IniRealmDemo
- * IniRealm 使用示例 编程式
+ * IniRealmTester
  * <p>
  *
  * @author Feathers
- * @date 2018-04-30 21:47
+ * @date 2018-05-06 0:37
  */
-public class IniRealmDemo {
+public class IniRealmTest {
 
-    public static void main(String[] args) {
-        IniRealm realm = new IniRealm("classpath:shiro.ini");
-        SecurityManager sm = new DefaultSecurityManager(realm);
+    @Test
+    public void testIniRealm() {
+        IniRealm iniRealm = new IniRealm("classpath:shiro.ini");
+        SecurityManager sm = new DefaultSecurityManager(iniRealm);
         SecurityUtils.setSecurityManager(sm);
         Subject user = SecurityUtils.getSubject();
-        user.login(new UsernamePasswordToken("zhangsan", "123456"));
+        user.login(new UsernamePasswordToken("Feathers", "123456"));
+        user.checkRoles("admin", "user");
+        user.checkPermission( "user:add");
     }
+
 }

@@ -1,26 +1,28 @@
-package me.feathers.demo.custom;
+package me.feathers.demo.customer;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
+import org.junit.Test;
 
 /**
- * MyRealm1
- * 自定义Realm的使用
+ * MyCustomRealmTest
  * <p>
  *
  * @author Feathers
- * @date 2018-05-01 10:56
+ * @date 2018-05-06 21:22
  */
-public class MyRealm1Demo {
+public class MyCustomRealmTest {
 
-    public static void main(String[] args) {
-        MyRealm1 myRealm1 = new MyRealm1();
-        SecurityManager sm = new DefaultSecurityManager(myRealm1);
+
+    @Test
+    public void testMyCustomRealm() {
+        MyCustomRealm realm = new MyCustomRealm();
+        SecurityManager sm = new DefaultSecurityManager(realm);
         SecurityUtils.setSecurityManager(sm);
         Subject user = SecurityUtils.getSubject();
-        user.login(new UsernamePasswordToken("zhangsan", "123"));
+        user.login(new UsernamePasswordToken("Feathers", "123456"));
     }
 }
