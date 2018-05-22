@@ -15,7 +15,7 @@
     </modules>
 
     <groupId>me.feathers.me.feathers.demo</groupId>
-    <artifactId>apache-shiro</artifactId>
+    <artifactId>apache-shiro-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
